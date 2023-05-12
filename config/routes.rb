@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
   get '/:nickname', to: 'users#show'
+  get '/:nickname/followers', to:'users#show_followers'
+  get '/:nickname/followings', to:'users#show_followings'
 
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :tweets, only:[:create,:destroy]
+  resources :follow_relationships, only:[:create,:destroy]
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
